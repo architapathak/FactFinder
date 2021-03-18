@@ -8,3 +8,5 @@ deployment/views_bk.py
 nltk.txt
 Procfile
 runtime.txt
+test_classes.py
+requirements_bk.txt
