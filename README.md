@@ -16,7 +16,7 @@ Next, to create python3 virual enverionment named `newenv`, run following the co
 virtualenv -p python3 venv
 ```
 
-Following command is used to activate the `newenv` environmen
+Following command is used to activate the `newenv` environment
 
 ```
 source newenv/bin/activate
