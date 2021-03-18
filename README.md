@@ -39,8 +39,9 @@ wget -P modules/models/ -c "https://s3.amazonaws.com/dl4j-distribution/GoogleNew
 ```
 Note that the size of this file is 1.5G and will take around 5 minutes to download.
 
-Finally, you would also require nltk `punkt` and `stopwords` packages that can be downloaded by using the following commands:
+Finally, you would also require nltk `punkt` and `stopwords` packages that can be downloaded by using:
 ```
+import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
 ```
