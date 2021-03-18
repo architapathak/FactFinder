@@ -13,7 +13,7 @@ pip3 install virtualenv
 Next, to create python3 virual enverionment named `newenv`, run following the command
 
 ```
-virtualenv -p python3 venv
+virtualenv -p python3 newenv
 ```
 
 Following command is used to activate the `newenv` environment
