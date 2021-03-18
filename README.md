@@ -1,4 +1,6 @@
 # FactFinder: Django Web App For End-to-End Fact-Checking Pipeline
+This repository contains code and models for web app construction using Django framework. A demo of this app was presented at Disinformation Challenge organized by 2020 SBP-BRiMS as a part of Challenge Winner paper *Disinformation - Analysis and Identification*
+
 The web app is based on the following pipeline:
 
 ![Website](https://user-images.githubusercontent.com/25678184/111694946-e7806780-8808-11eb-9ecc-c35c4ea24ee8.png)
