@@ -21,21 +21,21 @@ Following command is used to activate the `newenv` environmen
 ```
 source newenv/bin/activate
 ```
-You can now work with this environment to install dependencies for the web app. To exit the virual environment, simply run `deactivate` command.
+You can now work with this environment to install dependencies for the web app. To exit the virual environment, simply run `deactivate` command from anywhere.
 
 ## Installing/Downloading Dependencies
-Once inside the project directory, the following command can be used to install dependencies as mentioned in **requirements.txt** file
+Once inside the project directory on virtual environment, the following command can be used to install dependencies as mentioned in **requirements.txt** file
 
 ```
 pip3 install -r requirements.txt
 ```
 
-The webapp also requires GoogleNews word2vec vectors for Clickbait predictions. The embeddings can be downloaded and copied to correct location by using following commands:
+The webapp also requires GoogleNews word2vec vectors for Clickbait predictions. The embeddings can be downloaded and copied to correct location by using the following command:
 
 ```
 wget -P /modules/models/ -c "https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz"
 ```
-Note that this will take around 5 minutes. 
+Note that the size of this file is 1.5G and will take around 5 minutes to download.
 
 Finally, you would also require nltk `punkt` and `stopwords` packages that can be downloaded by using the following commands:
 ```
