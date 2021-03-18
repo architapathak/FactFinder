@@ -1,0 +1,10 @@
+*/__pycache__/
+deployment/templatetags/__pycache__/
+db.sqlite3
+*.log
+missing.csv
+templates/result_bk.html
+deployment/views_bk.py
+nltk.txt
+Procfile
+runtime.txt

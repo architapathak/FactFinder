@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FactFinder</title>
+	<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<center>
+	<h1>FactFinder</h1>
+	<br><br>
+
+	<div>
+		<label style="font-size: larger; ">Try these examples: </label>
+		<br>
+		<em><a href="#" id="ex1" name="ex1" onClick="autoFillEx1(); return true;" >Physician Confirms Hillary Clinton Has Parkinson's Disease</a></em> ----- <em><a href="#" id="ex2" name="ex2" onClick="autoFillEx2(); return true;" >FBI Agent Suspected in Hillary Email Leaks Found Dead in Apparent Murder-Suicide</a></em> ----- <em><a href="#" id="ex3" name="ex3" onClick="autoFillEx3(); return true;" >President Obama Confirms He Will Refuse to Leave Office If Trump Is Elected</a></em> 
+	</div>
+	<br><br>
+
+	<form action = "{% url 'result' %}">
+
+	{% csrf_token %}
+
+	<div>
+		<label style="font-size: larger; ">Headline: </label>
+	</div>
+	<div>
+		<input type = 'text' id="headline" name = 'headline' style="width: 500px;" oninvalid="this.setCustomValidity('Enter Headline Here')" oninput="this.setCustomValidity('')">
+	</div>
+	<br><br>
+	
+	<div>
+		<!-- Article: <input type = 'text' required name = 'article'>  -->
+		<label style="font-size: larger;">Article: </label>
+	</div>
+	<div>
+		<textarea id="article_text" name="article" style="width: 500px; height: 200px;" oninvalid="this.setCustomValidity('Enter Article Text Here')" oninput="this.setCustomValidity('')"></textarea>
+	</div>
+	<br><br>
+
+	<div>
+		<label style="font-size: larger;">Approx. Month and Year of the Article: </label>
+	</div>
+	<div>
+		<input type="month" required id="date" name="date" style="width: 200px;" min="2000-01" max="2030-12" value="2016-11" oninvalid="this.setCustomValidity('Enter Article Date Here')" oninput="this.setCustomValidity('')">
+	</div>
+	<br><br>
+
+	<input type="submit" name="" id="submit" class="button" style="height: 50px; width: 150px; font-weight: larger;" value="Submit">
+	<br><br><!-- 
+	<div class="spinner-border" role="status" id="loader">
+	  <span class="sr-only">Loading...</span>
+	</div> -->
+	<button class="btn btn-primary" type="button" id="loader" disabled>
+		<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+	  Please wait till we analyze the results...
+	</button>
+
+	</form>
+	</center>
+</body>
+</html>
+
+
+<script src='https://code.jquery.com/jquery-1.12.4.js'></script>
+<script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js'></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#loader").hide();
+	});
+	
+
+	$("#ex1").on("click", function(){
+		$("#headline").val("Physician Confirms Hillary Clinton Has Parkinson's Disease");
+		$("#date").val("2016-09");
+		const htmlString = `According to pharmaceutical executive Martin Shkreli, footage of Hillary Clinton exhibiting bizarre behavior is proof that the presidential candidate is suffering from Parkinson’s disease. Citing his “15 year background in drug discovery and pharmaceuticals,” Shkreli asserts that the videos of Hillary’s strange facial movements and her difficulties with walking are “pretty unmistakable signs of Parkinson’s disease.” Explaining that a stroke or a concussion wouldn’t explain the symptoms, Shkreli says that Hillary’s walking difficulties are a “cardinal symptom of Parkinson’s disease” and what is known as “freezing gait”. Shkreli adds that he helped develop a drug to treat the problem. Hillary’s “on-off episodes” are a result of dopamine depletion, according to Shkreli, which is impacting Hillary’s movement. “We’ve all seen the videos of her kind of making these perplexed facial movements,” says Shkreli, noting that Hillary’s over-reaction to balloons at the DNC was “unusual” because it betrayed an “inability to control her facial movements”. However, Hillary’s seizure-like behavior in response to reporters asking questions in another clip was even more odd because she “made this involuntary movement for about ten seconds which was truly unusual,” states Shkreli, identifying the condition as a form of Parkinson’s-induced dyskinesia. “This ia classic symptom….if you showed someone that symptom and said ‘name the disorder’ it’s not a seizure….that is simply involuntary movement, it’s PD-LID, no doubt about it in my mind,” adds Shkreli, concluding that when matched with Hillary’s “freezing gait,” it “explains everything.” Shkreli emphasizes the fact the he is non-partisan and has given more money to Democrats than Republicans. Despite his controversial background (Shkreli was once labeled the “most hated man in America” for raising the price of the drug Daraprim by 5556 per cent), his voice adds to the innumerable health experts and doctors who have been asking serious questions about Hillary’s ill health. Suspicions over Hillary’s health have raged in recent days, with the Drudge Report running a series of headlines highlighting her numerous falls and difficulties walking. In response, media outlets are beginning to characterize questions about Hillary’s health as little more than ‘right-wing conspiracy theories,’ although assertions by leftists that Donald Trump is mentally ill have not received similar treatment. Other questions continue to swirl, including claims that one of Hillary’ “handlers,” who calmed her during the recent interruption of one of her speeches, carries around a an auto-injector syringe for the administration of the anti-seizure drug Diazepam.According to Shkreli, the syringe “may be an Apokyn pen, used to treat Parkinson’s,” noting that it was the same color. “Knowing what we know now, and looking at the above video, it looks like after Hillary seized up like a deer in headlights, the medic tries to calm her down, but was having problems because the Secret Service members on stage were freaking her out,” according to the Ralph Retort. “The medic must have realized he wasn’t going to calm her down until Secret Service got off stage, so he went up to each of them individually, telling them to go away.” Twitter users are now calling for Hillary to be given a mental and physical health screening under the hashtag #Hillary’sHealth.`;
+
+		$('#article_text').val(htmlString);
+	});
+
+
+	$("#ex2").on("click", function(){
+		$("#headline").val("FBI Agent Suspected in Hillary Email Leaks Found Dead in Apparent Murder-Suicide");
+		$("#date").val("2016-11");
+		const htmlString = `Walkerville, MD – An FBI agent believed to be responsible for the latest email leaks “pertinent to the investigation” into Hillary Clinton’s private email server while she was Secretary of State, was found dead in an apparent murder-suicide early Saturday morning, according to police. Investigators believe FBI agent, Michael Brown, 45, shot and killed his 33-year-old wife, Susan Brown, late Friday night before setting the couple’s home on fire and then turning the gun on himself. Brown was a 12 year veteran of the Washington D.C. Metropolitan Police Department before spending the last six years in the FBI. Neighbors saw smoke coming from the Brown residence and called 9-1-1 at approximately 11:50 p.m. By the time fire crews arrived on scene minutes later, the entire house was engulfed in flames. “Mrs. Brown’s death was caused by a gunshot wound prior to the house fire,” Walkerville Police Chief Pat Frederick said, “while Mr. Brown’s single-bullet head wound appears to have been self-inflicted.” “The totality of the evidence leads us to believe this is a murder-suicide. We believe he killed her, set the house on fire and then took his own life,” Frederick said. The findings support conclusions by investigators Saturday that the couple perished in a murder-suicide during which the 4,000-square foot house was intentionally set on fire. Authorities outlined a likely scenario based on interviews with neighbors and comments posted on Mr. Brown’s Facebook page. Brown is believed to have started the gasoline-fueled fire but spared the life of his beloved beagle, Dixie. “Prior to the fire, he dropped off the dog at a neighbor’s house,” Frederick said. “He put the dog in a neighbor’s backyard.” A neighbor told WHAG that Brown appeared “panicked” though it is unclear whether his wife was dead before or after the dog was removed from their home. The motive behind the killing is still being investigated, but police say Brown was a highly respected agent with the FBI and very well liked in the community. “What leads someone to this level of anger and violence with your wife, your loved one, who knows,” said an FBI official who knew the Brown family. Conspiracy theories are running rampant throughout many alt. right media outlets, leading many to believe this was another “hit job” by the Clintons in retaliation for the FBI email leaks so close to the presidential election. Media outlets like Alex Jones’ Infowars and WND are running with the theory that globalist assassins, working for the Clintons, had the Brown family murdered and their home burned to destroy any possible evidence. FBI Director James Comey refused to comment at this time but asked for privacy and prayer as the bureau comes to terms with losing “two very close friends.”.`;
+
+		$('#article_text').val(htmlString);
+	});
+
+	$("#ex3").on("click", function(){
+		$("#headline").val("President Obama Confirms He Will Refuse to Leave Office If Trump Is Elected");
+		$("#date").val("2016-09");
+		const htmlString = `Barack Obama has sensationally told CNN’s Wolf Blitzer that he will NOT vacate the Oval office if Donald J. Trump is elected the 45th President of the United States.
+
+The current president claims he is “fully prepared” to ignore the popular vote if it means stopping Trump, having found what he believes is a little known loophole that would allow him to remain in charge until a re-election is called.
+
+“As president, I must do what I feel is in the best interests of our nation,” he explained. “If the American people elected ‘the Donald’ then I will be forced to take whatever actions I deem necessary.”
+
+When asked by the CNN anchor if he would remain in charge, Obama’s response was firm. “I am not standing down as president if it means four years of President Trump,” he said categorically.
+
+The president was asked what exact lengths he would go to, to prevent the billionaire from being sworn in on January, 20th, 2017. “I am prepared to file a motion of ‘no confidence’ in our citizens thereby taking their vote away from them,” he confessed.
+
+“Wait, you’re willing to impeach the American people as voters?” a possibly stunned Blitzer asked. “Yes, if necessary,” the President responded. “I cannot allow him into this chair, with his finger so close to the button. The power would go to his head immediately.”
+
+Obama even suggested he will barricade himself and his family inside the White House if it means stopping the Trump family from taking up residency there. “I’ve instructed the Secret Service to use full force in defending the White House from the Trump family. Joe has already expressed his willingness to die multiple times in order to keep them out of here.”
+
+When questioned by Howard Stern, Trump seemed unconcerned by the President’s stance. “Don’t worry, we’ll get some of the second amendment people to sort him out pretty quickly.”
+
+Which side are you on… Team Obama or Team Trump? Join the debate on Obama refusing to leave on Facebook, Twitter and now… Linkedin`;
+
+		$('#article_text').val(htmlString);
+	});
+
+	$("#submit").on("click",function(){
+		if(($("#headline").val().trim().length < 1)){
+			alert("Please enter headline")
+			$("#loader").hide();
+			return false;
+		}
+		else if(($("#article_text").val().trim().length < 1)){
+			alert("Please enter article text")
+			$("#loader").hide();
+			return false;
+		}
+		else{
+			$("#loader").show();
+		}
+	});
+</script>
