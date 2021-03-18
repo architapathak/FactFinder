@@ -21,7 +21,7 @@ Following command is used to activate the `newenv` environment
 ```
 source newenv/bin/activate
 ```
-You can now work with this environment to install dependencies for the web app. To exit the virual environment, simply run `deactivate` command from anywhere.
+You can now clone the repository within this environment and install dependencies for the web app. To exit the virual environment, simply run `deactivate` command from anywhere.
 
 ## Installing/Downloading Dependencies
 Once inside the project directory on virtual environment, the following command can be used to install dependencies as mentioned in **requirements.txt** file
