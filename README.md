@@ -35,7 +35,7 @@ pip3 install -r requirements.txt
 The webapp also requires GoogleNews word2vec vectors for Clickbait predictions. The embeddings can be downloaded and copied to correct location by using the following command:
 
 ```
-wget -P /modules/models/ -c "https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz"
+wget -P modules/models/ -c "https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz"
 ```
 Note that the size of this file is 1.5G and will take around 5 minutes to download.
 
