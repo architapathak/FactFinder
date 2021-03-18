@@ -32,7 +32,7 @@ def clean(text):
 def tokenize(text):
     text = re.sub('[\W_]+', ' ', text)
     text = text.strip()
-    words = [w for w in word_tokenize(text) if w is not 's']
+    words = [w for w in word_tokenize(text) if w != 's']
     return words
 
 def process_char(hl):
