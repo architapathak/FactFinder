@@ -6,16 +6,16 @@ The web app is based on the following pipeline:
 ![Website](https://user-images.githubusercontent.com/25678184/111694946-e7806780-8808-11eb-9ecc-c35c4ea24ee8.png)
 
 ## Setting Up Python Environment
-To reproduce the web app on your machine, we recommend setting up a python3 virtual environment. To setup virtual environment, first install `virtualenv` using pip3. **Note that dependencies are based on python version >= 3.7 and torch >= 1.3**
+To reproduce the web app on your machine, we recommend setting up a python virtual environment. To setup virtual environment, first install `virtualenv` using pip. **Note that dependencies are based on python version >= 3.7**
 
 ```
-pip3 install virtualenv
+pip install virtualenv
 ```
 
 Next, to create python3 virual enverionment named `newenv`, run following the command
 
 ```
-virtualenv -p python3 newenv
+virtualenv -p python newenv
 ```
 
 Following command is used to activate the `newenv` environment
@@ -31,7 +31,7 @@ You can now clone the repository within this environment and install dependencie
 Once inside the project directory on virtual environment, the following command can be used to install dependencies as mentioned in **requirements.txt** file
 
 ```
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 The webapp also requires GoogleNews word2vec vectors for Clickbait predictions. The embeddings can be downloaded and copied to correct location (***modules/models/***) by using the following command:
 
