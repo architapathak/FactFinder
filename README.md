@@ -26,6 +26,8 @@ source newenv/bin/activate
 You can now clone the repository within this environment and install dependencies for the web app. To exit the virual environment, simply run `deactivate` command from anywhere.
 
 ## Installing/Downloading Dependencies
+**Note that models stored in location *modules/models/* have total size 835M. Please download them manually or use git lfs (https://git-lfs.github.com/)**
+
 Once inside the project directory on virtual environment, the following command can be used to install dependencies as mentioned in **requirements.txt** file
 
 ```
