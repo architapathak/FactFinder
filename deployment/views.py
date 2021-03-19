@@ -137,7 +137,6 @@ def result(request):
           evid_res.append(evid_label.get(results))
           urls_new.append(url)
 
-    
     #CLICKBAIT PREDICTION
     print('********Predicting clickbait probability********')
     cb1, ncb1 = click_prediction(lis[0])
@@ -146,7 +145,6 @@ def result(request):
     ncb1 = int(ncb1)
     ncb1 = str(ncb1) + '%'
 
-    
     #HIGHLIGHT QUERY WORDS AND SIMILAR SENTENCES
     claim = lis[0] #Assume headline as the point of the article
     sentences = highlighting(final_query, lis[1], claim)
