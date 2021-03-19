@@ -6,7 +6,7 @@ The web app is based on the following pipeline:
 ![Website](https://user-images.githubusercontent.com/25678184/111694946-e7806780-8808-11eb-9ecc-c35c4ea24ee8.png)
 
 ## Setting Up Python Environment
-To reproduce the web app on your machine, we recommend setting up a python3 virtual environment. To setup virtual environment, first install `virtualenv` using pip3. **Note that dependencies require python > 3.5 and torch > 1.3**
+To reproduce the web app on your machine, we recommend setting up a python3 virtual environment. To setup virtual environment, first install `virtualenv` using pip3. **Note that dependencies are based on python version >= 3.7 and torch >= 1.3**
 
 ```
 pip3 install virtualenv
