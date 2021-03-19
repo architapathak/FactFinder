@@ -33,21 +33,20 @@ Once inside the project directory on virtual environment, the following command 
 ```
 pip3 install -r requirements.txt
 ```
-
-For query formulation module, you would require bert_sklearn which can be installed by using the following steps:
-
-```
-git clone -b master https://github.com/charles9n/bert-sklearn
-cd bert-sklearn
-pip install .
-```
-
 The webapp also requires GoogleNews word2vec vectors for Clickbait predictions. The embeddings can be downloaded and copied to correct location (***modules/models/***) by using the following command:
 
 ```
 wget -P modules/models/ -c "https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz"
 ```
 Note that the size of this file is 1.5G and will take around 5 minutes to download.
+
+For query formulation module in th pipeline, you would require bert_sklearn which can be installed by using the following steps:
+
+```
+git clone -b master https://github.com/charles9n/bert-sklearn
+cd bert-sklearn
+pip install .
+```
 
 Finally, you would also require nltk `punkt` and `stopwords` packages that can be downloaded by using:
 ```
