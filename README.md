@@ -55,3 +55,8 @@ nltk.download('stopwords')
 ```
 
 ## Run Django Web App
+To start web app on `127.0.0.1:8000`
+
+```
+python manage.py runserver
+```
