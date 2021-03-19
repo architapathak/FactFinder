@@ -11,7 +11,6 @@ import numpy as np
 import os
 path = os.path.join(os.path.dirname(__file__), 'models')
 
-
 #w2v = KeyedVectors.load_word2vec_format(os.path.join(path, 'GoogleNews-vectors-negative300.bin.gz'), binary=True)
 w2v = KeyedVectors.load_word2vec_format(os.path.join(path, 'GoogleNews-vectors-negative300.bin.gz'), binary=True, limit=100000)
 
