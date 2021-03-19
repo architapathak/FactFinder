@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Mar 18 15:19:39 2021
-
-@author: archita
 """
 import tensorflow as tf
 tf.to_float = lambda x: tf.cast(x, tf.float32)
@@ -17,13 +14,50 @@ path = os.path.dirname(__file__)
 
 #w2v = KeyedVectors.load_word2vec_format(WORD2VEC_VECTORS_BIN, binary=True)
 w2v = KeyedVectors.load_word2vec_format(os.path.join(path, 'models/GoogleNews-vectors-negative300.bin.gz'), binary=True, limit=30000)
-
+#model_clickbait = tf.keras.models.load_model(os.path.join(path, 'models/clickbait_model_weight.h5'), custom_objects={'tf': tf})
 
 # ******* START CLICKBAIT MODELING ************
 dimsize = 300
 sequence_size = 15
 maxlen = 250
 
+def binarize(x, sz=37):
+    return tf.to_float(tf.one_hot(x, sz, on_value=1, off_value=0, axis=-1))
+  
+def binarize_outshape(in_shape):
+    return in_shape[0], in_shape[1], 37
+
+def load_model():
+    filter_length = [5, 3, 3]
+    nb_filter = [196, 196, 300]
+    pool_length = 2
+    
+    in_sentence = tf.keras.layers.Input(shape=(maxlen,), dtype='int64')
+    
+    # binarize function creates a onehot encoding of each character index
+    embedded = tf.keras.layers.Lambda(binarize, output_shape=binarize_outshape)(in_sentence)
+    # embedded: encodes sentence
+    for i in range(len(nb_filter)):
+      embedded = tf.keras.layers.Conv1D(filters=nb_filter[i], kernel_size=filter_length[i], padding='valid',
+                                        activation='relu', kernel_initializer='glorot_normal')(embedded)
+                                        
+      embedded = tf.keras.layers.Dropout(0.1)(embedded)
+      embedded = tf.keras.layers.MaxPooling1D(pool_size=pool_length)(embedded)
+      
+    lstm_input = tf.keras.layers.Input(shape=(sequence_size, dimsize))
+    combined_features = tf.keras.layers.concatenate([embedded, lstm_input], axis=1)
+    forward_sent = tf.keras.layers.LSTM(128, dropout=0.2, recurrent_dropout= 0.2)(combined_features)
+    backward_sent = tf.keras.layers.LSTM(128, dropout=0.2, recurrent_dropout= 0.2, go_backwards=True)(combined_features)
+    
+    sent_encode = tf.keras.layers.concatenate([forward_sent, backward_sent])
+    sent_encode = tf.keras.layers.Dropout(0.3)(sent_encode)
+    output = tf.keras.layers.Dense(1, activation='sigmoid')(sent_encode)
+    
+    model = tf.keras.Model(inputs=[in_sentence,lstm_input], outputs=output)
+    
+    model.load_weights(os.path.join(path, 'models/clickbait_weights.h5'))
+    return model
+  
 def clean(text):
     text = re.sub('[\W_]+', ' ', text)
     text = text.strip()
@@ -81,7 +115,6 @@ def create_test_matrix(hl):
 
     return X_test_word, X_test_char
 
-model_clickbait = tf.keras.models.load_model(os.path.join(path, 'models/clickbait_model_weight.h5'), custom_objects={'tf': tf})
 
 def predict_classes(model, X_test_char, X_test_word):
 
@@ -93,7 +126,8 @@ def predict_classes(model, X_test_char, X_test_word):
 
 def click_prediction(hl):
     X_test_word, X_test_char = create_test_matrix(hl)
-
+    model_clickbait = load_model()
+    
     y_pred = predict_classes(model_clickbait, X_test_char, X_test_word).item()
     y_score = model_clickbait.predict([X_test_char, X_test_word]).item()
     if(y_pred == 0):
