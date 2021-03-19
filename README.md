@@ -55,7 +55,12 @@ nltk.download('stopwords')
 ```
 
 ## Run Django Web App
-To start web app on `127.0.0.1:8000`
+From the FactFinder project directory, first, run the command for Django migration:
+
+```
+python manage.py migrate
+```
+To start the web app on `127.0.0.1:8000`
 
 ```
 python manage.py runserver
