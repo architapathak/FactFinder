@@ -6,7 +6,7 @@ The web app is based on the following pipeline:
 ![Website](https://user-images.githubusercontent.com/25678184/111694946-e7806780-8808-11eb-9ecc-c35c4ea24ee8.png)
 
 ## Setting Up Python Environment
-To reproduce the web app on your machine, we recommend setting up a python3 virtual environment. To setup virtual environment, first install `virtualenv` using pip3
+To reproduce the web app on your machine, we recommend setting up a python3 virtual environment. To setup virtual environment, first install `virtualenv` using pip3. **Note that dependencies require python > 3.5 and torch > 1.3**
 
 ```
 pip3 install virtualenv
@@ -30,6 +30,14 @@ Once inside the project directory on virtual environment, the following command 
 
 ```
 pip3 install -r requirements.txt
+```
+
+For query formulation module, you would require bert_sklearn which can be installed by using the following steps:
+
+```
+git clone -b master https://github.com/charles9n/bert-sklearn
+cd bert-sklearn
+pip install .
 ```
 
 The webapp also requires GoogleNews word2vec vectors for Clickbait predictions. The embeddings can be downloaded and copied to correct location by using the following command:
