@@ -111,14 +111,16 @@ def result(request):
     urls = get_evidence(final_query)
     
     #EXTRACTING EVIDENCE TEXT
+    print('********Extracting at most 3 evidence********')
     df = ev_gathering(0, urls, lis[2])
 
     #************PREDICTING VERACITY********************
+    print('********Predicting degree of veracity********')
     evid_res = []
     urls_new = []
     evid_label = {0:'False', 1: 'Partial Truth', 2: 'Opinions Stated As Fact',
                     3: 'True', 4:'NEI'}
-
+                    
     text = basic_clean(lis[1])
     text = clean_for_nli(text)
 
@@ -130,18 +132,14 @@ def result(request):
           final_200 = 'nan'
         else:
           final_200 = ' '.join(new_text.split()[-200:])
-        print("URL:", url)
         results, score, avg = nli_prediction(initial_200, final_200)
-        print('NLI Score:', str(score))
-        print('Mean Score:', str(avg))        
         if score >= avg:
           evid_res.append(evid_label.get(results))
           urls_new.append(url)
 
-    print(evid_res)
-    print(urls_new)
     
     #CLICKBAIT PREDICTION
+    print('********Predicting clickbait probability********')
     cb1, ncb1 = click_prediction(lis[0])
     cb1 = int(cb1)
     cb1 = str(cb1) + '%'

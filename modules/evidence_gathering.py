@@ -9,6 +9,7 @@ from newspaper.article import ArticleException, ArticleDownloadState
 from time import sleep
 import pandas as pd
 from dateutil import parser, relativedelta
+from htmldate import find_date
 
 def crawl_snopes(id_, url, article_date):
     try:
@@ -18,17 +19,18 @@ def crawl_snopes(id_, url, article_date):
         if not res:
             res = soup.find('div', class_='single-body card card-body rich-text')
 
-        #print(res)
         paras = res.find_all('p')
         ev = ''
         for para in paras:
             # Remove links
             ev = ev + para.text.strip() + ' '
         
-        date_val = soup.find('li', {"class": "font-weight-bold text-muted"})
-        ev_date = date_val.text.split('\t')[4]
-        ev_date = parser.parse(ev_date).date()
         
+        #date_val = soup.find('li', {"class": "font-weight-bold text-muted"})
+        date_val = soup.find('time')
+        #ev_date = date_val.text.split('\t')[4]
+        
+        ev_date = parser.parse(date_val.text).date()
         if ev_date:
           delta = relativedelta.relativedelta(ev_date, article_date)
           delta = delta.months + (12*delta.years)
@@ -39,6 +41,7 @@ def crawl_snopes(id_, url, article_date):
     except Exception as e:
         print("exception caught...:", url)
         print(e)
+        print('moving on <3')
         with open('missing.csv', 'a', encoding='utf-8') as f:
             f.write(str(id_) + ',' + url + '\n')
         return 'exp'
@@ -69,6 +72,7 @@ def crawl_news(id_, link, article_date):
     except Exception as e:
         print('Exception caught...', link)
         print(e)
+        print('moving on <3')
         with open('missing.csv', 'a', encoding='utf-8') as f:
             f.write(str(id_) + ',' + link + '\n')
             
@@ -100,6 +104,7 @@ def crawl_truthoffiction(id_, link, article_date):
     except Exception as e:
         print("exception caught...:", link)
         print(e)
+        print('moving on <3')
         with open('missing.csv', 'a', encoding='utf-8') as f:
             f.write(str(id_) + ',' + link + '\n')
             
@@ -131,16 +136,17 @@ def crawl_politifact(id_, link, article_date):
     except Exception as e:
         print("exception caught...:", link)
         print(e)
+        print('moving on <3')
         with open('missing.csv', 'a', encoding='utf-8') as f:
             f.write(str(id_) + ',' + link + '\n')
         return 'exp'
 
 def ev_gathering(id_, links, dop):
+    NUM_ARTICLES = 3
     article_date = parser.parse(dop).date()
     #links = string of urls separated by ','
     evidence = []
     count = 0
-    print('Extracting id:', id_)
     if links == '':
       token = [id_, 'nan', '']
       evidence.append(token)
@@ -154,7 +160,7 @@ def ev_gathering(id_, links, dop):
 
     else:
         for link in ev:
-            if count == 3:
+            if count == NUM_ARTICLES:
               break
             sleep(1)
             if 'snopes' in link:

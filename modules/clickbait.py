@@ -12,8 +12,8 @@ import os
 path = os.path.join(os.path.dirname(__file__), 'models')
 
 
-#w2v = KeyedVectors.load_word2vec_format(WORD2VEC_VECTORS_BIN, binary=True)
-w2v = KeyedVectors.load_word2vec_format(os.path.join(path, 'models/GoogleNews-vectors-negative300.bin.gz'), binary=True, limit=30000)
+#w2v = KeyedVectors.load_word2vec_format(os.path.join(path, 'GoogleNews-vectors-negative300.bin.gz'), binary=True)
+w2v = KeyedVectors.load_word2vec_format(os.path.join(path, 'GoogleNews-vectors-negative300.bin.gz'), binary=True, limit=100000)
 
 # ******* START CLICKBAIT MODELING ************
 dimsize = 300
@@ -54,7 +54,7 @@ def load_model():
     
     model = tf.keras.Model(inputs=[in_sentence,lstm_input], outputs=output)
     
-    model.load_weights(os.path.join(path, 'models/clickbait_weights.h5'))
+    model.load_weights(os.path.join(path, 'clickbait_weights.h5'))
     return model
   
 def clean(text):

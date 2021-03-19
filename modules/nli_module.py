@@ -63,7 +63,7 @@ def nli_prediction(content, evidence):
     #content = clean(content)
     #evidence = clean(evidence)
     model = Classifier(transformer_model)    
-    model.load_state_dict(torch.load(os.path.join(path, 'models/best-nli-bert-model.pt'), map_location='cpu'), strict = False)
+    model.load_state_dict(torch.load(os.path.join(path, 'best-nli-bert-model.pt'), map_location='cpu'), strict = False)
     
     test_input_ids, test_attention_masks, test_input_types = transformer_tokenizer(content, evidence, tokenizer)
     test_input_ids = test_input_ids.unsqueeze(1).reshape(1,MAX_LEN)
@@ -71,6 +71,5 @@ def nli_prediction(content, evidence):
     test_input_types = test_input_types.unsqueeze(1).reshape(1,MAX_LEN)
 
     pred, score = predict_type(model, test_input_ids, test_attention_masks, test_input_types)
-    print(pred, score)    
-    
+    print(pred,score)
     return pred, max(score), np.mean(score)
