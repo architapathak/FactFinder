@@ -40,7 +40,7 @@ cd bert-sklearn
 pip install .
 ```
 
-The webapp also requires GoogleNews word2vec vectors for Clickbait predictions. The embeddings can be downloaded and copied to correct location by using the following command:
+The webapp also requires GoogleNews word2vec vectors for Clickbait predictions. The embeddings can be downloaded and copied to correct location (*modules/models/*) by using the following command:
 
 ```
 wget -P modules/models/ -c "https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz"
