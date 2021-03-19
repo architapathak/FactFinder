@@ -12,9 +12,6 @@ from sentence_transformers import SentenceTransformer
 model_sent = SentenceTransformer('bert-base-nli-mean-tokens')
 import scipy
 
-#nltk.download('punkt')
-#nltk.download('stopwords')
-
 #For cleaning
 import re
 from nltk.corpus import stopwords

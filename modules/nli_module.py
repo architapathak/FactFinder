@@ -7,7 +7,7 @@ import torch
 import numpy as np
 np.random.seed(42)
 import os
-path = os.path.dirname(__file__)
+path = os.path.join(os.path.dirname(__file__), 'models')
 
 MAX_LEN = 500
 model_name = 'bert-base-uncased'

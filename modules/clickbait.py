@@ -9,12 +9,11 @@ from gensim.models import KeyedVectors
 import re
 import numpy as np
 import os
-path = os.path.dirname(__file__)
+path = os.path.join(os.path.dirname(__file__), 'models')
 
 
 #w2v = KeyedVectors.load_word2vec_format(WORD2VEC_VECTORS_BIN, binary=True)
 w2v = KeyedVectors.load_word2vec_format(os.path.join(path, 'models/GoogleNews-vectors-negative300.bin.gz'), binary=True, limit=30000)
-#model_clickbait = tf.keras.models.load_model(os.path.join(path, 'models/clickbait_model_weight.h5'), custom_objects={'tf': tf})
 
 # ******* START CLICKBAIT MODELING ************
 dimsize = 300

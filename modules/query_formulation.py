@@ -8,10 +8,10 @@ from nltk import word_tokenize
 import spacy
 nlp = spacy.load("en_core_web_sm")
 import os
-path = os.path.dirname(__file__)
+path = os.path.join(os.path.dirname(__file__), 'models')
 
 def load_model():
-  return pickle.load(open(os.path.join(path, 'models/save.p'), "rb" ))
+  return pickle.load(open(os.path.join(path, 'save.p'), "rb" ))
 
 def basic_clean(text):
     lines = text.split('\n')
