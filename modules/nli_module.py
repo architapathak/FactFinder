@@ -60,8 +60,6 @@ def predict_type(model, test_input_ids, test_attention_masks, test_input_types):
     return prediction.pop(), scores.pop()
 
 def nli_prediction(content, evidence):
-    #content = clean(content)
-    #evidence = clean(evidence)
     model = Classifier(transformer_model)    
     model.load_state_dict(torch.load(os.path.join(path, 'best-nli-bert-model.pt'), map_location='cpu'), strict = False)
     
