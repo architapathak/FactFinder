@@ -53,7 +53,8 @@ def get_headline_query(ner_model, hl):
                 entities[text_tokens[i]] = ' '
                 ner_query += text_tokens[i]
                 ner_query += ' ' 
-    
+    if len(token_index) == 0:
+        return hl
     query = ''
     tags = ['VBG','VBZ','VB', 'VBN', 'VBD']
     for i in range(len(token_index)):
