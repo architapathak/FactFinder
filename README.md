@@ -1,5 +1,5 @@
 # FactFinder: Django Web App For End-to-End Fact-Checking Pipeline
-This repository contains code and models for web app construction using Django framework. A demo of this app was presented at Disinformation Challenge organized by 2020 SBP-BRiMS as a part of Challenge Winner paper *Disinformation - Analysis and Identification*
+This repository contains code and models for web app construction using Django framework. A demo of this app was presented as a part of Challenge Winner paper *Disinformation - Analysis and Identification* at Disinformation Challenge organized by SBP-BRiMS 2020.
 
 The web app is based on the following pipeline:
 
@@ -26,7 +26,7 @@ source newenv/bin/activate
 You can now clone the repository within this environment and install dependencies for the web app. To exit the virual environment, simply run `deactivate` command from anywhere.
 
 ## Installing/Downloading Dependencies
-**Note that models stored in location *modules/models/* have total size 835M. You can either download them manually or install git lfs (https://git-lfs.github.com/)**
+**Note that the models stored in the location *modules/models/* have a total size of 835M. You can either download them manually or install git lfs (https://git-lfs.github.com/)**
 
 Once inside the project directory on virtual environment, the following command can be used to install dependencies as mentioned in **requirements.txt** file
 
